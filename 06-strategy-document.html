@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ravvis Media — Strategy Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--deep:#0e333b;--teal:#074f5e;--sky:#c4e1e9;--gold:#a89060;--white:#ffffff;--surface:#f4f9fb;--border:#daedf3;--text:#1a2e33;--muted:#5a7a82;--font:'Urbanist',sans-serif;}
+body{font-family:var(--font);background:var(--surface);color:var(--text);padding:40px 20px;}
+.page{max-width:860px;margin:0 auto;}
+
+.cover{background:linear-gradient(160deg,var(--deep) 60%,#0a6678);border-radius:16px;padding:56px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(196,225,233,0.06);}
+.cover::after{content:'';position:absolute;bottom:-60px;left:30%;width:200px;height:200px;border-radius:50%;background:rgba(168,144,96,0.07);}
+.cover-tag{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;position:relative;z-index:1;}
+.cover h1{font-size:36px;font-weight:800;color:var(--white);letter-spacing:-0.8px;line-height:1.15;margin-bottom:8px;position:relative;z-index:1;}
+.cover-sub{font-size:15px;color:rgba(196,225,233,0.65);position:relative;z-index:1;margin-bottom:28px;}
+.cover-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;position:relative;z-index:1;}
+.cover-field label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(196,225,233,0.4);display:block;margin-bottom:4px;}
+.cover-field input,.cover-field select{background:rgba(255,255,255,0.08);border:1px solid rgba(196,225,233,0.15);border-radius:8px;padding:9px 13px;font-family:var(--font);font-size:13px;color:var(--white);width:100%;outline:none;}
+.cover-field input::placeholder{color:rgba(196,225,233,0.3);}
+.cover-field select option{background:white;color:var(--text);}
+
+.section{background:var(--white);border-radius:12px;border:1px solid var(--border);margin-bottom:20px;overflow:hidden;}
+.section-header{padding:16px 28px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);}
+.section-num{width:32px;height:32px;background:var(--deep);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--white);flex-shrink:0;}
+.section-header h2{font-size:16px;font-weight:700;color:var(--deep);margin:0;}
+.section-header p{font-size:12px;color:var(--muted);margin:0;margin-left:auto;}
+.section-body{padding:24px 28px;}
+
+.field-group{margin-bottom:20px;}
+.field-group:last-child{margin-bottom:0;}
+.field-label{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;display:block;}
+.field-hint{font-size:11.5px;color:var(--muted);margin-bottom:7px;font-style:italic;}
+input[type=text],select,textarea{width:100%;font-family:var(--font);font-size:14px;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px 14px;background:var(--surface);transition:border-color 0.2s;outline:none;}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);background:var(--white);}
+textarea{resize:vertical;line-height:1.65;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+.persona-card{border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px;}
+.persona-card h3{font-size:13px;font-weight:700;color:var(--deep);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+
+.pillar-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.pillar-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.pillar-top{background:var(--teal);padding:10px 14px;}
+.pillar-top input{background:transparent;border:none;font-family:var(--font);font-size:13px;font-weight:700;color:var(--white);width:100%;outline:none;}
+.pillar-top input::placeholder{color:rgba(255,255,255,0.4);}
+.pillar-body{padding:12px 14px;}
+.pillar-body textarea{min-height:80px;font-size:13px;border:none;background:transparent;padding:0;}
+.pillar-body textarea:focus{background:transparent;}
+
+.platform-table{width:100%;border-collapse:collapse;font-size:13px;}
+.platform-table th{background:rgba(7,79,94,0.07);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.5px;}
+.platform-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.platform-table tr:last-child td{border-bottom:none;}
+.platform-table td input,.platform-table td select,.platform-table td textarea{border:none;background:transparent;font-size:13px;padding:0;min-height:auto;}
+.platform-table td textarea{min-height:40px;resize:none;}
+.platform-cell-label{font-weight:700;color:var(--deep);font-size:13px;}
+
+.kpi-table{width:100%;border-collapse:collapse;font-size:13px;}
+.kpi-table th{background:rgba(7,79,94,0.07);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.5px;}
+.kpi-table td{padding:10px 14px;border-bottom:1px solid var(--border);}
+.kpi-table tr:last-child td{border-bottom:none;}
+.kpi-table td input{border:none;background:transparent;font-size:13px;padding:0;width:100%;}
+
+.checkbox-group{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.checkbox-item{display:flex;align-items:center;gap:8px;}
+.checkbox-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--teal);flex-shrink:0;}
+.checkbox-item span{font-size:13.5px;}
+
+.approval-box{background:rgba(168,144,96,0.05);border:1px solid rgba(168,144,96,0.2);border-radius:10px;padding:20px 24px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:20px;}
+.appr-field label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:5px;}
+
+.footer{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:var(--white);border-radius:12px;border:1px solid var(--border);margin-top:4px;}
+.footer p{font-size:12px;color:var(--muted);}
+.btn{background:var(--teal);color:var(--white);font-family:var(--font);font-size:13px;font-weight:700;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;}
+.btn-out{background:transparent;color:var(--teal);border:1px solid var(--teal);margin-right:8px;}
+.btn-out:hover,.btn:hover{background:var(--deep);border-color:var(--deep);color:var(--white);}
+@media print{body{background:white;padding:20px;}.cover{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.footer .btn,.footer .btn-out{display:none;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="cover-tag">Ravvis Media — Digital Marketing Strategy</div>
+    <h1>Brand Strategy<br>Document</h1>
+    <div class="cover-sub">Confidential — Internal and Client Use</div>
+    <div class="cover-fields">
+      <div class="cover-field"><label>Client / Brand</label><input type="text" placeholder="Business name"></div>
+      <div class="cover-field"><label>Prepared By</label><input type="text" placeholder="Strategist name"></div>
+      <div class="cover-field"><label>Date</label><input type="text" placeholder="DD / MM / YYYY"></div>
+      <div class="cover-field"><label>Strategy Period</label><input type="text" placeholder="e.g. May – July 2025"></div>
+      <div class="cover-field"><label>Version</label><select><option>v1.0 — Initial</option><option>v1.1 — Revised</option><option>v2.0 — Major Update</option></select></div>
+      <div class="cover-field"><label>Status</label><select><option>Draft</option><option>In Review</option><option>Approved</option></select></div>
+    </div>
+  </div>
+
+  <!-- 1. BRAND OVERVIEW -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">1</div><h2>Brand Overview</h2></div>
+    <div class="section-body">
+      <div class="field-group">
+        <label class="field-label">Business Description</label>
+        <div class="field-hint">What does this business do, who does it serve, and how does it operate?</div>
+        <textarea style="min-height:80px;" placeholder="Concise description of the business..."></textarea>
+      </div>
+      <div class="grid-2">
+        <div class="field-group">
+          <label class="field-label">Industry / Niche</label>
+          <input type="text" placeholder="e.g. Organic beauty — Ghana">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Business Stage</label>
+          <select>
+            <option value="">Select</option>
+            <option>New / Startup (under 1 year)</option>
+            <option>Growing (1 to 3 years)</option>
+            <option>Established (3+ years)</option>
+            <option>Scaling / Expanding</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Unique Selling Proposition (USP)</label>
+        <div class="field-hint">What makes this brand different from every competitor in their space? Be specific.</div>
+        <textarea style="min-height:70px;" placeholder="What does only this brand offer that no one else does?"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Brand Voice & Tone</label>
+        <textarea style="min-height:60px;" placeholder="How does the brand communicate? Warm? Bold? Educational? Playful? Professional? Give examples of how it sounds."></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Current Challenges</label>
+        <textarea style="min-height:70px;" placeholder="What problems are they currently facing in their marketing or digital presence?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. AUDIENCE -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">2</div><h2>Target Audience</h2></div>
+    <div class="section-body">
+      <div class="persona-card">
+        <h3>Primary Audience Persona</h3>
+        <div class="grid-3">
+          <div class="field-group"><label class="field-label">Persona Name</label><input type="text" placeholder="e.g. 'The Ambitious Professional'"></div>
+          <div class="field-group"><label class="field-label">Age Range</label><input type="text" placeholder="e.g. 25 to 40"></div>
+          <div class="field-group"><label class="field-label">Gender</label><input type="text" placeholder="e.g. Predominantly female"></div>
+        </div>
+        <div class="grid-2">
+          <div class="field-group"><label class="field-label">Location</label><input type="text" placeholder="e.g. Accra, Ghana and diaspora (UK, USA)"></div>
+          <div class="field-group"><label class="field-label">Income Level</label><input type="text" placeholder="e.g. Middle income, working professional"></div>
+        </div>
+        <div class="field-group"><label class="field-label">Interests & Lifestyle</label><textarea style="min-height:60px;" placeholder="What do they care about? What do they do in their free time? What do they value?"></textarea></div>
+        <div class="grid-2">
+          <div class="field-group"><label class="field-label">Their Main Pain Points</label><textarea style="min-height:70px;" placeholder="What problems do they have that this brand can solve?"></textarea></div>
+          <div class="field-group"><label class="field-label">Where They Spend Time Online</label><textarea style="min-height:70px;" placeholder="Which platforms? What accounts do they follow? What content do they engage with?"></textarea></div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Secondary Audience (if applicable)</label>
+        <textarea style="min-height:70px;" placeholder="Describe any secondary audience group — different age, location, or use case..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. COMPETITOR ANALYSIS -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">3</div><h2>Competitor Analysis</h2></div>
+    <div class="section-body">
+      <table class="platform-table">
+        <thead>
+          <tr>
+            <th style="width:22%;">Competitor</th>
+            <th style="width:20%;">Their Strength</th>
+            <th style="width:20%;">Their Weakness</th>
+            <th>Opportunity for Our Client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Competitor name"></td>
+            <td><textarea placeholder="What they do well..."></textarea></td>
+            <td><textarea placeholder="Where they fall short..."></textarea></td>
+            <td><textarea placeholder="How our client can win here..."></textarea></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Competitor name"></td>
+            <td><textarea placeholder="What they do well..."></textarea></td>
+            <td><textarea placeholder="Where they fall short..."></textarea></td>
+            <td><textarea placeholder="How our client can win here..."></textarea></td>
+          </tr>
+          <tr>
+            <td><input type="text" placeholder="Competitor name"></td>
+            <td><textarea placeholder="What they do well..."></textarea></td>
+            <td><textarea placeholder="Where they fall short..."></textarea></td>
+            <td><textarea placeholder="How our client can win here..."></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="field-group" style="margin-top:18px;">
+        <label class="field-label">Key Differentiators — What Makes Our Client Stand Out</label>
+        <textarea style="min-height:70px;" placeholder="Based on the competitor analysis, what specific positioning should the client own that competitors are not doing well?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. CONTENT PILLARS -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">4</div><h2>Content Pillars</h2></div>
+    <div class="section-body">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Define 3 to 5 content pillars. Each pillar is a recurring theme category that all content will fall under. Together they should cover: value to the audience, proof of the brand, and brand personality.</p>
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-top"><input type="text" placeholder="Pillar 1 Name"></div>
+          <div class="pillar-body"><textarea placeholder="What kind of content lives under this pillar? Why does it matter to the audience?"></textarea></div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-top"><input type="text" placeholder="Pillar 2 Name"></div>
+          <div class="pillar-body"><textarea placeholder="What kind of content lives under this pillar?"></textarea></div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-top"><input type="text" placeholder="Pillar 3 Name"></div>
+          <div class="pillar-body"><textarea placeholder="What kind of content lives under this pillar?"></textarea></div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-top"><input type="text" placeholder="Pillar 4 Name (optional)"></div>
+          <div class="pillar-body"><textarea placeholder="What kind of content lives under this pillar?"></textarea></div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-top"><input type="text" placeholder="Pillar 5 Name (optional)"></div>
+          <div class="pillar-body"><textarea placeholder="What kind of content lives under this pillar?"></textarea></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PLATFORM STRATEGY -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">5</div><h2>Platform Strategy</h2></div>
+    <div class="section-body">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">For each recommended platform, define the role it plays, the content type, and the posting frequency.</p>
+      <table class="platform-table">
+        <thead>
+          <tr>
+            <th style="width:18%;">Platform</th>
+            <th style="width:22%;">Role / Goal</th>
+            <th style="width:25%;">Content Type</th>
+            <th style="width:18%;">Frequency</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="platform-cell-label">Instagram</div></td>
+            <td><textarea placeholder="e.g. Primary brand awareness and community hub"></textarea></td>
+            <td><textarea placeholder="e.g. Reels, carousels, stories, quotes"></textarea></td>
+            <td><input type="text" placeholder="e.g. 5x / week"></td>
+            <td><select><option>Primary</option><option>Secondary</option><option>Tertiary</option><option>Not recommended</option></select></td>
+          </tr>
+          <tr>
+            <td><div class="platform-cell-label">Facebook</div></td>
+            <td><textarea placeholder="Role on this platform..."></textarea></td>
+            <td><textarea placeholder="Content type..."></textarea></td>
+            <td><input type="text" placeholder="Frequency"></td>
+            <td><select><option>Primary</option><option>Secondary</option><option>Tertiary</option><option>Not recommended</option></select></td>
+          </tr>
+          <tr>
+            <td><div class="platform-cell-label">TikTok</div></td>
+            <td><textarea placeholder="Role on this platform..."></textarea></td>
+            <td><textarea placeholder="Content type..."></textarea></td>
+            <td><input type="text" placeholder="Frequency"></td>
+            <td><select><option>Primary</option><option>Secondary</option><option>Tertiary</option><option>Not recommended</option></select></td>
+          </tr>
+          <tr>
+            <td><div class="platform-cell-label">LinkedIn</div></td>
+            <td><textarea placeholder="Role on this platform..."></textarea></td>
+            <td><textarea placeholder="Content type..."></textarea></td>
+            <td><input type="text" placeholder="Frequency"></td>
+            <td><select><option>Primary</option><option>Secondary</option><option>Tertiary</option><option>Not recommended</option></select></td>
+          </tr>
+          <tr>
+            <td><div class="platform-cell-label">WhatsApp</div></td>
+            <td><textarea placeholder="Role on this platform..."></textarea></td>
+            <td><textarea placeholder="Content type..."></textarea></td>
+            <td><input type="text" placeholder="Frequency"></td>
+            <td><select><option>Primary</option><option>Secondary</option><option>Tertiary</option><option>Not recommended</option></select></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6. GOALS & KPIs -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">6</div><h2>Goals & KPIs</h2></div>
+    <div class="section-body">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Set measurable goals for the strategy period. Every goal must have a number attached to it.</p>
+      <table class="kpi-table">
+        <thead>
+          <tr>
+            <th style="width:30%;">Goal</th>
+            <th style="width:22%;">Current Baseline</th>
+            <th style="width:22%;">Target</th>
+            <th>Timeline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="text" placeholder="e.g. Instagram followers"></td><td><input type="text" placeholder="e.g. 420 followers"></td><td><input type="text" placeholder="e.g. 1,000 followers"></td><td><input type="text" placeholder="e.g. 3 months"></td></tr>
+          <tr><td><input type="text" placeholder="e.g. Average post engagement rate"></td><td><input type="text" placeholder="Baseline..."></td><td><input type="text" placeholder="Target..."></td><td><input type="text" placeholder="Timeline..."></td></tr>
+          <tr><td><input type="text" placeholder="e.g. Monthly website traffic from social"></td><td><input type="text" placeholder="Baseline..."></td><td><input type="text" placeholder="Target..."></td><td><input type="text" placeholder="Timeline..."></td></tr>
+          <tr><td><input type="text" placeholder="e.g. DM / enquiry conversions per month"></td><td><input type="text" placeholder="Baseline..."></td><td><input type="text" placeholder="Target..."></td><td><input type="text" placeholder="Timeline..."></td></tr>
+          <tr><td><input type="text" placeholder="e.g. Monthly reach / impressions"></td><td><input type="text" placeholder="Baseline..."></td><td><input type="text" placeholder="Target..."></td><td><input type="text" placeholder="Timeline..."></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 7. RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">7</div><h2>Recommendations & Action Plan</h2></div>
+    <div class="section-body">
+      <div class="field-group">
+        <label class="field-label">Immediate Actions (Month 1)</label>
+        <textarea style="min-height:90px;" placeholder="What needs to happen first? What quick wins can be achieved in the first 30 days?"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Medium Term Actions (Month 2 to 3)</label>
+        <textarea style="min-height:80px;" placeholder="What builds on the foundation laid in month 1? What campaigns or content series should launch?"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Paid Advertising Recommendation</label>
+        <textarea style="min-height:70px;" placeholder="Is paid advertising recommended at this stage? If yes — what platform, what objective, and when should it start?"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Additional Notes for the Media Strategist</label>
+        <textarea style="min-height:70px;" placeholder="Anything the Media Strategist needs to know when building the content calendar from this strategy..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPROVAL -->
+  <div class="approval-box">
+    <div class="appr-field"><label>Prepared By (Strategist)</label><input type="text" placeholder="Name + date"></div>
+    <div class="appr-field"><label>Internally Reviewed By</label><input type="text" placeholder="Name + date"></div>
+    <div class="appr-field"><label>Client Approval</label><input type="text" placeholder="Client name + date approved"></div>
+  </div>
+
+  <div class="footer" style="margin-top:16px;">
+    <p>Ravvis Media — Strategy Document — File as: ClientName_Strategy_MonthYear</p>
+    <div>
+      <button class="btn btn-out" onclick="window.print()">Print / PDF</button>
+      <button class="btn" onclick="clearForm()">Clear</button>
+    </div>
+  </div>
+
+</div>
+<script>
+function clearForm(){
+  if(confirm('Clear all fields?')){
+    document.querySelectorAll('input[type=text],textarea').forEach(el=>el.value='');
+    document.querySelectorAll('select').forEach(el=>el.selectedIndex=0);
+  }
+}
+</script>
+</body>
+</html>
